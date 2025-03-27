@@ -1,10 +1,10 @@
 #######################################################################################################################################################
 # 
-# Name:
-# SID:
-# Exam Date:
-# Module:
-# Github link for this assignment:  
+# Name: Minh Anh Nguyen
+# SID: 740099319
+# Exam Date: Thursday March 27, 2025
+# Module: Programming for Business Analytics
+# Github link for this assignment: https://github.com/UniversityExeterBusinessSchool/practiceassessment-thursday-mn548
 #
 # ######################################################################################################################################################
 # Instruction 1. Read the questions and instructions carefully and complete scripts.
@@ -52,6 +52,17 @@ key_comments = {
 # Initialize an empty list to store (start, end) positions
 my_list = []
 
+sid = [7, 9] # sid: 740099319
+
+for i in sid:
+    start_location = customer_feedback.find(key_comments[i])
+    end_location = start_location + len(key_comments[i])
+    my_list.append((start_location, end_location))
+
+print(my_list)
+[(129, 136), (82, 87)]
+
+# OUTPUT 
 ##########################################################################################################################################################
 
 # Question 2 - Functions
@@ -59,18 +70,54 @@ my_list = []
 # Operating Profit Margin, Revenue per Customer, Customer Churn Rate, and Average Order Value. Use Python functions 
 # that will take the values and return the metric needed. Use the first two and last two digits of your ID number as the input values.
 
-# Insert first two digits of ID number here:
-# Insert last two digits of ID number here:
+# Insert first two digits of ID number here: 74
+# Insert last two digits of ID number here: 19
 
 # Write your code for Operating Profit Margin
+def net_profit_margin(net_profit, total_revenue):
+    if total_revenue != 0:
+        net_profit_margin = (net_profit / total_revenue) * 100
+    else:
+        net_profit_margin = 0
+    return net_profit_margin
 
 # Write your code for Revenue per Customer
+def revenue_per_customer(total_revenue, total_customers):
+    if total_customers != 0:
+        revenue_per_customer = total_revenue / total_customers
+    else:
+        revenue_per_customer = 0
+    return revenue_per_customer
 
 # Write your code for Customer Churn Rate
+def customer_churn_rate(total_customers, lost_customers):
+    if total_customers != 0:
+        customer_churn_rate = (lost_customers / total_customers) * 100
+    else:
+        customer_churn_rate = 0
+    return customer_churn_rate
 
 # Write your code for Average Order Value
+def average_order_value(total_revenue, total_orders):
+    if total_orders != 0:
+        average_order_value = total_revenue / total_orders
+    else:
+        average_order_value = 0
+    return average_order_value
 
 # Call your designed functions here
+value1 = 74
+value2 = 19
+print (net_profit_margin(value1, value2))
+print (revenue_per_customer(value1, value2))
+print (customer_churn_rate(value1, value2))
+print (average_order_value(value1, value2))
+
+# OUTPUT
+389.4736842105263
+3.8947368421052633
+25.675675675675674
+3.8947368421052633
 
 ##########################################################################################################################################################
 
@@ -97,6 +144,31 @@ Price (£)    Demand (Units)
 """
 
 # Write your code here
+# Write your code here
+# Importing necessary libraries
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Demand and Price Data
+prices = np.array([20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]).reshape(-1, 1)
+demand = np.array([300, 280, 260, 240, 210, 190, 160, 140, 120, 100, 85])
+
+model = LinearRegression()
+model.fit(prices, demand)
+
+m = model.coef_[0]
+b = model.intercept_
+
+optimal_price = -b/(2*m)
+
+demand_at_52 = model.predict([[52]])[0]
+
+print(f"Optimal price: £{optimal_price:.2f}")
+print(f"Predicted demand at £52: {demand_at_52:.0f} units")
+
+# OUTPUT
+Optimal price: £44.55
+Predicted demand at £52: 173 units
 
 ##########################################################################################################################################################
 
@@ -118,5 +190,21 @@ plt.legend('---')
 plt.grid(True)
 plt.show()
 
+# Debug the code and provide comments on the errors identified and corrections made.
 
+import random
+import matplotlib.pyplot as plt
+
+# Generate 100 random numbers between 1 and student id number
+max_value = int(input("Enter your Student ID: ")) # Corrected interger () by int() to convert input to integer
+random_numbers = [random.randint(1, max_value) for i in range(0,100)]
+
+# Plotting the numbers in a line chart
+plt.plot(random_numbers, marker='o', markeredgecolor='green', markeredgecolor='red', linestyle='--', label='Random Numbers', color='blue') # Corrected markercolor to markeredgecolor, lable to label (typo error)
+plt.title("Line Chart of 100 Random Numbers") # Corrected missing quotation marks
+plt.xlabel("Index") # Corrected = to () to set xlabel and ylabel
+plt.ylabel("Random Number") # Corrected = to () to set xlabel and ylabel
+plt.legend() # Corrected '---' to () to show legend
+plt.grid(True)
+plt.show()
 
